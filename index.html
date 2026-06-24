@@ -38,13 +38,20 @@
     --font: "Source Sans 3", system-ui, sans-serif;
     --display: "Fraunces", Georgia, serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    /* Type scale */
+    --text-xs: 0.75rem;   /* 12px — kicker, labels */
+    --text-sm: 0.875rem;  /* 14px — meta, notes */
+    --text-base: 1rem;    /* 16px — body */
+    --text-lg: 1.125rem;  /* 18px — lede */
+    --text-xl: 1.375rem;  /* 22px — h2 */
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
     color: var(--ink);
-    font: 17px/1.6 var(--font);
+    font: var(--text-base)/1.6 var(--font);
     background-color: var(--bg);
     background-image: radial-gradient(circle at 1px 1px, var(--bg-grid) 1px, transparent 0);
     background-size: 22px 22px;
@@ -63,42 +70,79 @@
   /* Hero */
   .hero { margin-bottom: 48px; }
   .kicker {
-    font: 500 11px/1 var(--mono);
+    font: 500 var(--text-xs)/1 var(--mono);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 0 0 18px;
+    margin: 0 0 14px;
   }
   h1 {
     font-family: var(--display);
-    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    font-size: clamp(2rem, 5vw, 2.75rem);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.08;
     letter-spacing: -0.03em;
-    margin: 0 0 20px;
-    max-width: 14ch;
+    margin: 0 0 16px;
+    max-width: 16ch;
   }
   .lede {
-    font-size: 1.15rem;
+    font-size: var(--text-lg);
+    line-height: 1.55;
     color: var(--muted);
-    max-width: 42rem;
-    margin: 0 0 28px;
+    max-width: 40rem;
+    margin: 0 0 22px;
   }
   .stats {
-    display: flex; flex-wrap: wrap; gap: 10px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 12px;
   }
   .stat {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 999px;
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 7px 14px;
+    font-size: var(--text-sm);
     color: var(--muted);
+    font-family: var(--font);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .stat:hover { border-color: var(--sage); }
+  .stat.on {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--ink);
+    box-shadow: 0 0 0 1px var(--gold);
   }
   .stat b {
     font-family: var(--mono);
     font-weight: 500;
     color: var(--ink);
+  }
+  .stat-detail {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: var(--text-base);
+    line-height: 1.55;
+    max-width: 40rem;
+    animation: fadeIn 0.2s ease;
+  }
+  .stat-detail h3 {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin: 0 0 6px;
+    font-family: var(--mono);
+  }
+  .stat-detail p { margin: 0; color: var(--ink); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Sections */
@@ -109,7 +153,7 @@
   }
   .section-num {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 500;
     color: var(--gold);
     letter-spacing: 0.08em;
@@ -117,11 +161,11 @@
   }
   h2 {
     font-family: var(--display);
-    font-size: 1.45rem;
+    font-size: var(--text-xl);
     font-weight: 500;
     letter-spacing: -0.02em;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
   /* Cards */
@@ -135,10 +179,10 @@
   .card--accent {
     border-left: 3px solid var(--gold);
   }
-  .card p { margin: 0 0 12px; }
+  .card p { margin: 0 0 10px; font-size: var(--text-base); line-height: 1.55; }
   .card p:last-child { margin-bottom: 0; }
-  .muted { color: var(--muted); font-size: 15px; }
-  .lead { font-size: 1.05rem; }
+  .muted { color: var(--muted); font-size: var(--text-base); }
+  .lead { font-size: var(--text-base); line-height: 1.55; }
 
   /* Interactive panel */
   .panel {
@@ -155,7 +199,7 @@
   }
   .panel-body { padding: 22px 28px 26px; }
   .label {
-    font-size: 11px;
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--muted);
@@ -176,7 +220,7 @@
     color: var(--ink);
     padding: 9px 16px;
     border-radius: 8px;
-    font: 600 13px var(--font);
+    font: 600 var(--text-sm) var(--font);
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s, color 0.15s;
   }
@@ -195,8 +239,8 @@
     padding: 12px 14px;
     background: var(--sage-soft);
     border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: var(--text-sm);
+    line-height: 1.5;
     color: var(--ink);
     border: 1px solid var(--line);
     font-style: italic;
@@ -205,8 +249,8 @@
   /* Bars */
   .chart-title {
     font-family: var(--display);
-    font-size: 1.1rem;
-    margin: 0 0 18px;
+    font-size: var(--text-lg);
+    margin: 0 0 16px;
     letter-spacing: -0.01em;
   }
   .row {
@@ -221,11 +265,11 @@
     display: flex; justify-content: space-between; align-items: baseline;
     grid-column: 1 / -1;
   }
-  .row .nm { font-size: 14px; font-weight: 500; }
-  .row .nm small { color: var(--muted); font-weight: 400; }
+  .row .nm { font-size: var(--text-sm); font-weight: 500; }
+  .row .nm small { color: var(--muted); font-weight: 400; font-size: var(--text-xs); }
   .row .val {
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-weight: 500;
     color: var(--ink);
   }
@@ -252,8 +296,8 @@
     background: var(--gold-soft);
     border-radius: 8px;
     border-left: 3px solid var(--gold);
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: var(--text-base);
+    line-height: 1.55;
   }
   .insight b { font-weight: 600; }
 
@@ -265,14 +309,14 @@
   @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
 
   ul { margin: 0; padding-left: 1.2em; }
-  li { margin: 8px 0; font-size: 15px; color: var(--muted); }
+  li { margin: 8px 0; font-size: var(--text-base); color: var(--muted); }
   li::marker { color: var(--gold); }
 
-  .colophon {
+  .note { font-size: var(--text-sm); margin-top: 14px; }
     margin-top: 56px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     font-family: var(--mono);
     letter-spacing: 0.02em;
@@ -287,18 +331,19 @@
     <p class="kicker">PMG Hackathon 2026 · measured pick-rates · smartwatches</p>
     <h1>Agent Visibility Audit</h1>
     <p class="lede">When a shopper asks an AI to recommend a product, what in the brand's online information actually drives the pick? We change one footprint element at a time and measure it.</p>
-    <div class="stats">
-      <span class="stat"><b>2</b> AI models</span>
-      <span class="stat"><b>2</b> shopper questions</span>
-      <span class="stat"><b>6</b> footprint edits tested</span>
-      <span class="stat">focal brand <b>Amazfit Active</b></span>
+    <div class="stats" id="statSeg" role="tablist" aria-label="What we tested">
+      <button type="button" class="stat on" data-stat="models" role="tab" aria-selected="true"><b>2</b> AI models</button>
+      <button type="button" class="stat" data-stat="questions" role="tab" aria-selected="false"><b>2</b> shopper questions</button>
+      <button type="button" class="stat" data-stat="edits" role="tab" aria-selected="false"><b>6</b> footprint edits</button>
+      <button type="button" class="stat" data-stat="brand" role="tab" aria-selected="false">focal brand <b>Amazfit Active</b></button>
     </div>
+    <div class="stat-detail" id="statDetail" role="tabpanel"></div>
   </header>
 
   <section>
     <div class="card card--accent">
       <p class="lead"><strong>Hypothesis:</strong> AI recommends the best-<em>described</em> brand, not always the best product.</p>
-      <p class="muted">Amazfit Active ($129 — 14-day battery, GPS, sleep) vs. five rivals. One element changed per test; everything else held constant. Real API runs, logged to CSV.</p>
+      <p class="muted">Amazfit Active ($129 — 14-day battery, GPS, sleep) vs. five rivals. One element changed per test; everything else held constant.</p>
     </div>
   </section>
 
@@ -331,7 +376,7 @@
         <p class="chart-title">How often the AI picks Amazfit</p>
         <div id="bars"></div>
         <div class="insight" id="insight"></div>
-        <p class="muted" id="nnote" style="margin-top:14px;font-size:13px"></p>
+        <p class="muted note" id="nnote"></p>
       </div>
     </div>
   </section>
@@ -382,6 +427,25 @@
 </div>
 
 <script>
+const STAT_INFO = {
+  models: {
+    title: '2 AI models',
+    body: 'Claude Haiku 4.5 (Anthropic) and Gemini 3.5 Flash (Google). Same harness and prompts — results reported separately because the two models weight price, proof, and copy differently.'
+  },
+  questions: {
+    title: '2 shopper questions',
+    body: 'Priced: “Recommend a smartwatch for running and sleep tracking under $250.” (10 runs per edit.) Open: same question without the price ceiling (30 runs per edit) — tests whether footprint edits move an underdog once the price edge is gone.'
+  },
+  edits: {
+    title: '6 footprint edits',
+    body: 'One change to Amazfit per run: no change (baseline), hard numbers on claims, press citation, expert quote, problem-matched copy, and keyword stuffing (caution arm — measured, never recommended). Rivals and query held constant.'
+  },
+  brand: {
+    title: 'Focal brand — Amazfit Active',
+    body: '$129 smartwatch vs. Apple Watch SE, Samsung Galaxy Watch 7, Garmin Forerunner 265, Fitbit Charge 6, and Google Pixel Watch 3. Amazfit has strong specs but thin third-party editorial coverage — an intentional gap we test fixes for.'
+  }
+};
+
 const QUERIES = {
   priced: 'Recommend a smartwatch for running and sleep tracking under $250.',
   open: 'Recommend a smartwatch for running and sleep tracking.'
@@ -405,6 +469,18 @@ const ARMS = [
   {k:"keyword_stuff",nm:"Keyword stuffing", sub:"caution"}
 ];
 let state = {model:"claude", regime:"priced"};
+let activeStat = 'models';
+
+function renderStatDetail(){
+  const info = STAT_INFO[activeStat];
+  const el = document.getElementById('statDetail');
+  el.innerHTML = `<h3>${info.title}</h3><p>${info.body}</p>`;
+  document.querySelectorAll('#statSeg .stat').forEach(b => {
+    const on = b.dataset.stat === activeStat;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+}
 
 function render(){
   document.querySelectorAll('#modelSeg button').forEach(b =>
@@ -447,10 +523,13 @@ function render(){
   document.getElementById('queryText').textContent = '“' + QUERIES[state.regime] + '”';
 }
 
+document.querySelectorAll('#statSeg .stat').forEach(b =>
+  b.onclick = () => { activeStat = b.dataset.stat; renderStatDetail(); });
 document.querySelectorAll('#modelSeg button').forEach(b =>
   b.onclick = () => { state.model = b.dataset.model; render(); });
 document.querySelectorAll('#regimeSeg button').forEach(b =>
   b.onclick = () => { state.regime = b.dataset.regime; render(); });
+renderStatDetail();
 render();
 </script>
 </body>
