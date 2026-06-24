@@ -4,8 +4,6 @@ When a shopper asks an AI to recommend a smartwatch, what in the brand's online 
 
 **Agent Visibility Audit report:** [aniveshkanodia.github.io/agent-visibility-audit](https://aniveshkanodia.github.io/agent-visibility-audit/)
 
-**Repository:** [github.com/aniveshkanodia/agent-visibility-audit](https://github.com/aniveshkanodia/agent-visibility-audit)
-
 **Category:** smartwatches · **Focal brand:** Amazfit Active · **Models:** Claude Haiku 4.5, Gemini 3.5 Flash
 
 ---
