@@ -1,0 +1,129 @@
+{
+  "brand_id": "amazfit_active",
+  "brand_name": "Amazfit Active",
+  "query": "Recommend a smartwatch for running and sleep tracking.",
+  "regime": "open",
+  "results_dir": "results_q2",
+  "visibility": [
+    {
+      "model": "claude-haiku-4-5",
+      "share_of_voice": 0.1333333333333333,
+      "ci_low": 0.053095694242181,
+      "ci_high": 0.2968168394441695,
+      "picks": 4,
+      "reps": 30
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "share_of_voice": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.113517091390478,
+      "picks": 0,
+      "reps": 30
+    }
+  ],
+  "signals": {
+    "statistic": false,
+    "cite_source": false,
+    "quotation": false,
+    "problem_match": false,
+    "keyword_stuff": false
+  },
+  "gaps": [
+    {
+      "dimension": "trust",
+      "severity": 0.9,
+      "message": "No third-party editorial coverage \u2014 agents lack independent corroboration.",
+      "suggested_arm": "cite_source"
+    },
+    {
+      "dimension": "translation",
+      "severity": 0.85,
+      "message": "Competitors have editorial picks; focal brand has none \u2014 visibility gap vs category norms.",
+      "suggested_arm": "quotation"
+    },
+    {
+      "dimension": "trust",
+      "severity": 0.75,
+      "message": "Key claims lack hard numbers \u2014 battery and accuracy assertions are qualitative only.",
+      "suggested_arm": "statistic"
+    }
+  ],
+  "prescriptions": {
+    "claude-haiku-4-5": [
+      {
+        "rank": 1,
+        "arm": "quotation",
+        "description": "Adds TechRadar quote endorsement to editorial.",
+        "lift_pp": 0.6,
+        "lift_ci_low": 0.259,
+        "lift_ci_high": 0.805,
+        "resulting_pick_rate": 0.733,
+        "resulting_ci_low": 0.556,
+        "resulting_ci_high": 0.858
+      },
+      {
+        "rank": 2,
+        "arm": "problem_match",
+        "description": "Prefixes description with running + sleep + under-$250 framing.",
+        "lift_pp": 0.467,
+        "lift_ci_low": 0.126,
+        "lift_ci_high": 0.701,
+        "resulting_pick_rate": 0.6,
+        "resulting_ci_low": 0.423,
+        "resulting_ci_high": 0.754
+      },
+      {
+        "rank": 3,
+        "arm": "cite_source",
+        "description": "Adds third-party Runner's World citation to editorial.",
+        "lift_pp": 0.333,
+        "lift_ci_low": 0.006,
+        "lift_ci_high": 0.585,
+        "resulting_pick_rate": 0.467,
+        "resulting_ci_low": 0.302,
+        "resulting_ci_high": 0.639
+      }
+    ],
+    "gemini-3.5-flash": [
+      {
+        "rank": 1,
+        "arm": "statistic",
+        "description": "Adds hard-number lab statistics to brand page.",
+        "lift_pp": 0.1,
+        "lift_ci_low": -0.079,
+        "lift_ci_high": 0.256,
+        "resulting_pick_rate": 0.1,
+        "resulting_ci_low": 0.035,
+        "resulting_ci_high": 0.256
+      },
+      {
+        "rank": 2,
+        "arm": "problem_match",
+        "description": "Prefixes description with running + sleep + under-$250 framing.",
+        "lift_pp": 0.033,
+        "lift_ci_low": -0.108,
+        "lift_ci_high": 0.167,
+        "resulting_pick_rate": 0.033,
+        "resulting_ci_low": 0.006,
+        "resulting_ci_high": 0.167
+      },
+      {
+        "rank": 3,
+        "arm": "cite_source",
+        "description": "Adds third-party Runner's World citation to editorial.",
+        "lift_pp": 0.0,
+        "lift_ci_low": -0.114,
+        "lift_ci_high": 0.114,
+        "resulting_pick_rate": 0.0,
+        "resulting_ci_low": 0.0,
+        "resulting_ci_high": 0.114
+      }
+    ]
+  },
+  "footprint_diagnostic": {
+    "reach": 90.0,
+    "trust": 44.0,
+    "translation": 41.0
+  }
+}

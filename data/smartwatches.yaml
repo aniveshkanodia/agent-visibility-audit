@@ -1,0 +1,136 @@
+# Brand footprint blocks for the Agent Visibility Audit experiment.
+#
+# Provenance (curated static information package — see BRIEF.md):
+#   - Specs and prices: real, from public product pages at experiment design time.
+#   - Customer reviews: paraphrased from real reviews (no verbatim copy).
+#   - Editorial blocks: reflect real coverage patterns (Amazfit editorial: [] is intentional).
+#   - Treatment arms inject synthetic quotes/stats via src/treatments.py — stimuli only,
+#     measuring response to signal *form*, not asserting those claims are true.
+
+focal: amazfit_active
+
+brands:
+  amazfit_active:
+    name: "Amazfit Active"
+    price: 129
+    brand_page: >
+      Amazfit Active smartwatch with 1.75" AMOLED display, built-in GPS, and
+      14-day battery life. Tracks 120+ sport modes including running and sleep
+      stages. 5 ATM water resistance. Works with iOS and Android via Zepp app.
+      Lightweight polycarbonate case, interchangeable bands.
+    reviews:
+      - "Battery easily lasts a week with daily GPS runs. Sleep tracking is detailed. — verified buyer"
+      - "Great value for the price. GPS locks quickly on runs. — Amazon reviewer"
+    editorial: []  # gap: no Wirecutter/TechRadar/editorial pick
+    specs:
+      gps: true
+      battery_days: 14
+      waterproof_m: 50
+      ecg: false
+      sleep_tracking: true
+      amoled: true
+
+  apple_watch_se:
+    name: "Apple Watch SE (2nd gen)"
+    price: 249
+    brand_page: >
+      Apple Watch SE features a Retina display, crash detection, and fall detection.
+      GPS + cellular option. Up to 18 hours battery. Tracks workouts, sleep stages,
+      and heart rate. Deep integration with iPhone, Apple Fitness+, and Siri.
+    reviews:
+      - "Best smartwatch for iPhone users on a budget. Sleep tracking improved in watchOS 10. — verified buyer"
+      - "Running metrics are accurate; battery needs nightly charge. — Best Buy reviewer"
+    editorial:
+      - "The Verge: The Apple Watch SE remains the best smartwatch for iPhone users who don't need the latest sensors."
+      - "Wirecutter: Best Apple Watch for most people — excellent fitness tracking and app ecosystem."
+    specs:
+      gps: true
+      battery_days: 1
+      waterproof_m: 50
+      ecg: false
+      sleep_tracking: true
+      amoled: false
+
+  samsung_galaxy_watch_7:
+    name: "Samsung Galaxy Watch 7"
+    price: 299
+    brand_page: >
+      Samsung Galaxy Watch 7 with BioActive sensor, dual-frequency GPS, and
+      sleep coaching. 40mm or 44mm sizes. Wear OS with Google apps. Tracks
+      running form, body composition, and sleep apnea signs. Up to 30 hours battery.
+    reviews:
+      - "GPS and running metrics rival Garmin. Sleep coaching is helpful. — Samsung community"
+      - "Premium build but over budget for sub-$250 shoppers. — Tech reviewer"
+    editorial:
+      - "TechRadar: Galaxy Watch 7 offers the best Android smartwatch experience with strong health tracking."
+      - "CNET: Excellent sleep and fitness features, though price exceeds budget tier."
+    specs:
+      gps: true
+      battery_days: 1.5
+      waterproof_m: 50
+      ecg: true
+      sleep_tracking: true
+      amoled: true
+
+  garmin_forerunner_265:
+    name: "Garmin Forerunner 265"
+    price: 449
+    brand_page: >
+      Garmin Forerunner 265 GPS running watch with AMOLED display, training readiness,
+      and advanced running dynamics. Up to 13 days in smartwatch mode. Sleep score,
+      HRV status, and morning report. Multi-band GPS for trail and road running.
+    reviews:
+      - "Gold standard for runners. Sleep and recovery metrics are best-in-class. — Runner's World reader"
+      - "Price is steep but training insights are unmatched. — DC Rainmaker comment"
+    editorial:
+      - "Runner's World: Editor's Choice — the Forerunner 265 balances AMOLED and serious running metrics."
+      - "Wirecutter: Top pick for dedicated runners who want Garmin ecosystem."
+    specs:
+      gps: true
+      battery_days: 13
+      waterproof_m: 50
+      ecg: false
+      sleep_tracking: true
+      amoled: true
+
+  fitbit_charge_6:
+    name: "Fitbit Charge 6"
+    price: 159
+    brand_page: >
+      Fitbit Charge 6 fitness tracker with built-in GPS, heart rate, and sleep tracking.
+      Google apps integration. Up to 7-day battery. Tracks runs, sleep stages, and SpO2.
+      Slim band form factor — not a full smartwatch but covers running and sleep.
+    reviews:
+      - "Accurate GPS for a band. Sleep stages match my Oura ring closely. — Fitbit community"
+      - "No speaker or apps — pure fitness focus. Great under $200. — verified buyer"
+    editorial:
+      - "Wirecutter: Best fitness tracker — Charge 6 nails sleep and GPS for the price."
+      - "Tom's Guide: Top budget pick for sleep and step tracking with GPS."
+    specs:
+      gps: true
+      battery_days: 7
+      waterproof_m: 50
+      ecg: false
+      sleep_tracking: true
+      amoled: true
+
+  google_pixel_watch_3:
+    name: "Google Pixel Watch 3"
+    price: 349
+    brand_page: >
+      Google Pixel Watch 3 with Fitbit health sensors, dual-frequency GPS, and
+      sleep profiles. Wear OS 5. Up to 24 hours battery (36 with Battery Saver).
+      Running and sleep tracking via Fitbit integration. Emergency SOS and fall detection.
+    reviews:
+      - "Best-looking Android watch. Sleep tracking is solid. Battery is the weak spot. — Reddit r/GooglePixel"
+      - "Running GPS improved vs Pixel Watch 2. — Android Police reader"
+    editorial:
+      - "The Verge: Pixel Watch 3 is the best Wear OS watch for Google phone owners."
+      - "Engadget: Strong sleep and fitness suite, premium price for budget query."
+    specs:
+      gps: true
+      battery_days: 1
+      waterproof_m: 50
+      ecg: false
+      sleep_tracking: true
+      amoled: true

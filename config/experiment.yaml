@@ -1,0 +1,32 @@
+# Locked experiment inputs — Agent Visibility Audit (deadline scope)
+focal: amazfit_active
+query: "Recommend a smartwatch for running and sleep tracking under $250."
+
+competitors:
+  - apple_watch_se
+  - samsung_galaxy_watch_7
+  - garmin_forerunner_265
+  - fitbit_charge_6
+  - google_pixel_watch_3
+
+models:
+  - id: claude-haiku-4-5
+    provider: anthropic
+    litellm_model: claude-haiku-4-5-20251001
+  - id: gemini-3.5-flash
+    provider: google
+    litellm_model: gemini/gemini-3.5-flash
+
+# Reduced matrix for deadline: 6 arms × 2 models × 10 reps default
+arms:
+  - control
+  - statistic
+  - cite_source
+  - quotation
+  - problem_match
+  - keyword_stuff
+
+reps: 10
+data_file: data/smartwatches.yaml
+prompt_template: data/prompts/default.txt
+results_dir: results

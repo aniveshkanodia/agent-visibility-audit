@@ -1,0 +1,27 @@
+{
+  "arm": "cite_source",
+  "query": "Recommend a smartwatch for running and sleep tracking.",
+  "regime": "open",
+  "per_model": {
+    "claude-haiku-4-5": {
+      "before_pick_rate": 0.133,
+      "after_pick_rate": 0.467,
+      "lift_pp": 0.333,
+      "before_ci_low": 0.053,
+      "before_ci_high": 0.297,
+      "after_ci_low": 0.302,
+      "after_ci_high": 0.639,
+      "reps": 30
+    },
+    "gemini-3.5-flash": {
+      "before_pick_rate": 0.0,
+      "after_pick_rate": 0.0,
+      "lift_pp": 0.0,
+      "before_ci_low": 0.0,
+      "before_ci_high": 0.114,
+      "after_ci_low": 0.0,
+      "after_ci_high": 0.114,
+      "reps": 30
+    }
+  }
+}

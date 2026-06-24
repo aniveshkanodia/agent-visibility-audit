@@ -1,0 +1,16 @@
+You are a shopping assistant helping a user choose a product. You have access to the following product information gathered from brand pages, reviews, and editorial sources on the web.
+
+{product_cards}
+
+The user asks: "{query}"
+
+Recommend exactly one product that best fits the user's needs. Consider price, features, reviews, and editorial coverage. Base your choice only on the information provided above.
+
+Respond with valid JSON matching this schema:
+{{
+  "chosen_brand": "<exact product name from the list>",
+  "ranked_list": ["<best>", "<second>", ...],
+  "cited_sources": ["<source labels you relied on, e.g. brand_page, review, editorial>"],
+  "confidence": <float 0-1>,
+  "reason": "<brief explanation>"
+}}

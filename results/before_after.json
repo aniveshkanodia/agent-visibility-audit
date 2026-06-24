@@ -1,0 +1,27 @@
+{
+  "arm": "cite_source",
+  "query": "Recommend a smartwatch for running and sleep tracking under $250.",
+  "regime": "priced",
+  "per_model": {
+    "claude-haiku-4-5": {
+      "before_pick_rate": 0.1,
+      "after_pick_rate": 0.8,
+      "lift_pp": 0.7,
+      "before_ci_low": 0.018,
+      "before_ci_high": 0.404,
+      "after_ci_low": 0.49,
+      "after_ci_high": 0.943,
+      "reps": 10
+    },
+    "gemini-3.5-flash": {
+      "before_pick_rate": 0.5,
+      "after_pick_rate": 1.0,
+      "lift_pp": 0.5,
+      "before_ci_low": 0.237,
+      "before_ci_high": 0.763,
+      "after_ci_low": 0.722,
+      "after_ci_high": 1.0,
+      "reps": 10
+    }
+  }
+}
