@@ -65,10 +65,19 @@
     background: var(--surface); padding: 10px 14px;
     border: 1px solid var(--line); border-radius: 6px;
   }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 48px 22px 80px; }
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 64px;
+  }
+
+  /* Shared content width — all boxes align */
+  .content-box {
+    width: 100%;
+  }
 
   /* Hero */
-  .hero { margin-bottom: 48px; }
+  .hero { margin-bottom: 32px; }
   .kicker {
     font: 500 var(--text-xs)/1 var(--mono);
     letter-spacing: 0.14em;
@@ -78,19 +87,17 @@
   }
   h1 {
     font-family: var(--display);
-    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-size: clamp(1.9rem, 4.5vw, 2.5rem);
     font-weight: 700;
     line-height: 1.08;
     letter-spacing: -0.03em;
-    margin: 0 0 16px;
-    max-width: 16ch;
+    margin: 0 0 14px;
   }
   .lede {
     font-size: var(--text-lg);
     line-height: 1.55;
     color: var(--muted);
-    max-width: 40rem;
-    margin: 0 0 22px;
+    margin: 0 0 20px;
   }
   .stats {
     display: flex; flex-wrap: wrap; gap: 8px;
@@ -124,10 +131,10 @@
     border: 1px solid var(--line);
     border-left: 3px solid var(--gold);
     border-radius: var(--radius);
-    padding: 14px 18px;
+    padding: 16px 20px;
     font-size: var(--text-base);
     line-height: 1.55;
-    max-width: 40rem;
+    width: 100%;
     animation: fadeIn 0.2s ease;
   }
   .stat-detail h3 {
@@ -136,20 +143,43 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--gold);
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     font-family: var(--mono);
   }
-  .stat-detail p { margin: 0; color: var(--ink); }
+  .stat-detail p { margin: 0 0 8px; color: var(--ink); }
+  .stat-detail p:last-child { margin-bottom: 0; }
+  .query-lines { margin: 0; padding: 0; list-style: none; }
+  .query-lines li {
+    margin: 0 0 10px;
+    padding: 0 0 0 14px;
+    border-left: 2px solid var(--line);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .query-lines li:last-child { margin-bottom: 0; }
+  .query-lines .q-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .rival-name { font-weight: 600; color: var(--coral); }
+  .focal-name { font-weight: 600; color: var(--gold); }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   /* Sections */
-  section { margin-bottom: 40px; }
+  section { margin-bottom: 28px; }
   .section-head {
-    display: flex; align-items: baseline; gap: 14px;
-    margin-bottom: 16px;
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 12px;
   }
   .section-num {
     font-family: var(--mono);
@@ -173,8 +203,9 @@
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 26px 28px;
+    padding: 18px 20px;
     box-shadow: var(--shadow);
+    width: 100%;
   }
   .card--accent {
     border-left: 3px solid var(--gold);
@@ -191,13 +222,14 @@
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    width: 100%;
   }
   .panel-top {
-    padding: 22px 28px 18px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, var(--cream) 0%, var(--surface) 100%);
   }
-  .panel-body { padding: 22px 28px 26px; }
+  .panel-body { padding: 18px 20px 20px; }
   .label {
     font-size: var(--text-xs);
     text-transform: uppercase;
@@ -209,7 +241,8 @@
   .controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
+    align-items: start;
   }
   @media (max-width: 640px) { .controls { grid-template-columns: 1fr; } }
 
@@ -235,22 +268,37 @@
     background: var(--gold); color: var(--ink); border-color: var(--gold);
   }
   .query-box {
-    margin-top: 12px;
-    padding: 12px 14px;
-    background: var(--sage-soft);
-    border-radius: 8px;
+    margin-top: 10px;
+    padding: 0;
+    background: transparent;
+    border: none;
     font-size: var(--text-sm);
     line-height: 1.5;
-    color: var(--ink);
+  }
+  .query-line {
+    margin: 0 0 8px;
+    padding: 10px 12px;
+    background: var(--sage-soft);
     border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--muted);
     font-style: italic;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .query-line:last-child { margin-bottom: 0; }
+  .query-line.on {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--ink);
+    box-shadow: inset 3px 0 0 var(--gold);
   }
 
   /* Bars */
   .chart-title {
     font-family: var(--display);
-    font-size: var(--text-lg);
-    margin: 0 0 16px;
+    font-size: var(--text-base);
+    font-weight: 500;
+    margin: 0 0 14px;
     letter-spacing: -0.01em;
   }
   .row {
@@ -291,8 +339,8 @@
   .row.caution .nm { color: var(--coral); }
 
   .insight {
-    margin-top: 22px;
-    padding: 16px 18px;
+    margin-top: 16px;
+    padding: 14px 16px;
     background: var(--gold-soft);
     border-radius: 8px;
     border-left: 3px solid var(--gold);
@@ -312,9 +360,10 @@
   li { margin: 8px 0; font-size: var(--text-base); color: var(--muted); }
   li::marker { color: var(--gold); }
 
-  .note { font-size: var(--text-sm); margin-top: 14px; }
-    margin-top: 56px;
-    padding-top: 24px;
+  .note { font-size: var(--text-sm); margin-top: 12px; }
+  .colophon {
+    margin-top: 40px;
+    padding-top: 20px;
     border-top: 1px solid var(--line);
     font-size: var(--text-sm);
     color: var(--muted);
@@ -337,13 +386,13 @@
       <button type="button" class="stat" data-stat="edits" role="tab" aria-selected="false"><b>6</b> footprint edits</button>
       <button type="button" class="stat" data-stat="brand" role="tab" aria-selected="false">focal brand <b>Amazfit Active</b></button>
     </div>
-    <div class="stat-detail" id="statDetail" role="tabpanel"></div>
+    <div class="stat-detail content-box" id="statDetail" role="tabpanel"></div>
   </header>
 
   <section>
-    <div class="card card--accent">
+    <div class="card card--accent content-box">
       <p class="lead"><strong>Hypothesis:</strong> AI recommends the best-<em>described</em> brand, not always the best product.</p>
-      <p class="muted">Amazfit Active ($129 — 14-day battery, GPS, sleep) vs. five rivals. One element changed per test; everything else held constant.</p>
+      <p class="muted"><span class="focal-name">Amazfit Active</span> ($129 — 14-day battery, GPS, sleep) vs. <span class="rival-name">five rivals</span>. One element changed per test; everything else held constant.</p>
     </div>
   </section>
 
@@ -368,7 +417,10 @@
               <button type="button" data-regime="priced" class="on">Priced query</button>
               <button type="button" data-regime="open">Open query</button>
             </div>
-            <div class="query-box" id="queryText"></div>
+            <div class="query-box" id="queryBox">
+              <p class="query-line on" data-regime="priced" id="queryPriced"></p>
+              <p class="query-line" data-regime="open" id="queryOpen"></p>
+            </div>
           </div>
         </div>
       </div>
@@ -427,29 +479,36 @@
 </div>
 
 <script>
-const STAT_INFO = {
-  models: {
-    title: '2 AI models',
-    body: 'Claude Haiku 4.5 (Anthropic) and Gemini 3.5 Flash (Google). Same harness and prompts — results reported separately because the two models weight price, proof, and copy differently.'
-  },
-  questions: {
-    title: '2 shopper questions',
-    body: 'Priced: “Recommend a smartwatch for running and sleep tracking under $250.” (10 runs per edit.) Open: same question without the price ceiling (30 runs per edit) — tests whether footprint edits move an underdog once the price edge is gone.'
-  },
-  edits: {
-    title: '6 footprint edits',
-    body: 'One change to Amazfit per run: no change (baseline), hard numbers on claims, press citation, expert quote, problem-matched copy, and keyword stuffing (caution arm — measured, never recommended). Rivals and query held constant.'
-  },
-  brand: {
-    title: 'Focal brand — Amazfit Active',
-    body: '$129 smartwatch vs. Apple Watch SE, Samsung Galaxy Watch 7, Garmin Forerunner 265, Fitbit Charge 6, and Google Pixel Watch 3. Amazfit has strong specs but thin third-party editorial coverage — an intentional gap we test fixes for.'
-  }
-};
-
 const QUERIES = {
   priced: 'Recommend a smartwatch for running and sleep tracking under $250.',
   open: 'Recommend a smartwatch for running and sleep tracking.'
 };
+const RIVALS = 'Apple Watch SE, Samsung Galaxy Watch 7, Garmin Forerunner 265, Fitbit Charge 6, Google Pixel Watch 3';
+const RIVALS_HTML = RIVALS.split(', ').map(r => `<span class="rival-name">${r}</span>`).join(', ');
+
+const STAT_INFO = {
+  models: {
+    title: '2 AI models',
+    html: '<p>Claude Haiku 4.5 (Anthropic) and Gemini 3.5 Flash (Google). Same harness and prompts — results reported separately because the two models weight price, proof, and copy differently.</p>'
+  },
+  questions: {
+    title: '2 shopper questions',
+    html: `<ul class="query-lines">
+      <li><span class="q-label">Priced · 10 runs per edit</span>“${QUERIES.priced}”</li>
+      <li><span class="q-label">Open · 30 runs per edit</span>“${QUERIES.open}”</li>
+    </ul>
+    <p style="margin-top:10px;font-size:0.875rem;color:#5c5c5c">The open question removes the price ceiling — testing whether footprint edits move an underdog once the price edge is gone.</p>`
+  },
+  edits: {
+    title: '6 footprint edits',
+    html: '<p>One change to Amazfit per run: no change (baseline), hard numbers on claims, press citation, expert quote, problem-matched copy, and keyword stuffing (caution arm — measured, never recommended). Rivals and query held constant.</p>'
+  },
+  brand: {
+    title: 'Focal brand — Amazfit Active',
+    html: `<p><span class="focal-name">Amazfit Active</span> ($129) vs. ${RIVALS_HTML}. Amazfit has strong specs but thin third-party editorial coverage — an intentional gap we test fixes for.</p>`
+  }
+};
+
 const DATA = {
   claude: {
     priced: {reps:10, control:.10, statistic:.40, cite_source:.80, quotation:.90, problem_match:.90, keyword_stuff:.90},
@@ -474,7 +533,7 @@ let activeStat = 'models';
 function renderStatDetail(){
   const info = STAT_INFO[activeStat];
   const el = document.getElementById('statDetail');
-  el.innerHTML = `<h3>${info.title}</h3><p>${info.body}</p>`;
+  el.innerHTML = `<h3>${info.title}</h3>${info.html}`;
   document.querySelectorAll('#statSeg .stat').forEach(b => {
     const on = b.dataset.stat === activeStat;
     b.classList.toggle('on', on);
@@ -520,7 +579,11 @@ function render(){
 
   document.getElementById('nnote').textContent =
     `Based on ${d.reps} runs per change. ` + (d.reps === 10 ? 'Treat as directional.' : '');
-  document.getElementById('queryText').textContent = '“' + QUERIES[state.regime] + '”';
+
+  document.getElementById('queryPriced').textContent = '“' + QUERIES.priced + '”';
+  document.getElementById('queryOpen').textContent = '“' + QUERIES.open + '”';
+  document.querySelectorAll('.query-line').forEach(el =>
+    el.classList.toggle('on', el.dataset.regime === state.regime));
 }
 
 document.querySelectorAll('#statSeg .stat').forEach(b =>
