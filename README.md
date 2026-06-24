@@ -26,8 +26,8 @@ Numbers below come from frozen runs in [`results/`](results/) and [`results_q2/`
 
 | Directory | Query | Reps | Claude baseline | Gemini baseline |
 |---|---|---|---|---|
-| [`results/`](results/) | …running and sleep tracking **under $250** | 10/arm | 10% | 50% |
-| [`results_q2/`](results_q2/) | …running and sleep tracking (no price) | 30/arm | 13% | 0% |
+| [`results/`](results/) | Recommend a smartwatch for running and sleep tracking under $250. | 10/arm | 10% | 50% |
+| [`results_q2/`](results_q2/) | Recommend a smartwatch for running and sleep tracking. | 30/arm | 13% | 0% |
 
 Each directory contains `runs.csv`, analysis tables, lift charts (`*.png`), and `audit_report.md` (measured visibility + footprint diagnostic).
 
