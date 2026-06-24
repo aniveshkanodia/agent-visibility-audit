@@ -370,6 +370,11 @@
     font-family: var(--mono);
     letter-spacing: 0.02em;
   }
+  .audit-row { display:grid; grid-template-columns:84px 1fr; gap:14px; padding:11px 0; border-top:1px solid var(--line); align-items:start; font-size:var(--text-base); line-height:1.55; }
+  .audit-row.first { border-top:none; padding-top:2px; }
+  .audit-label { font-family:var(--mono); font-size:var(--text-xs); font-weight:600; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; padding-top:3px; }
+  .quote { font-family:var(--display); font-size:var(--text-lg); font-style:italic; line-height:1.5; color:var(--ink); margin:0 0 10px; }
+  .quote .hl { color:var(--gold); font-weight:600; font-style:normal; }
 </style>
 </head>
 <body>
@@ -379,8 +384,8 @@
   <header class="hero">
     <p class="kicker">PMG Hackathon 2026 · measured pick-rates · smartwatches</p>
     <h1>Agent Visibility Audit</h1>
-    <p class="lede">When a shopper asks an AI to recommend a product, what in the brand's online information actually drives the pick? We change one footprint element at a time and measure it.</p>
-    <div class="stats" id="statSeg" role="tablist" aria-label="What we tested">
+    <p class="lede">When a shopper asks an AI to recommend a product, what in the brand's online information actually drives the pick? I change one element of it at a time and measure the effect on how often the brand gets recommended.</p>
+    <div class="stats" id="statSeg" role="tablist" aria-label="What I tested">
       <button type="button" class="stat on" data-stat="models" role="tab" aria-selected="true"><b>2</b> AI models</button>
       <button type="button" class="stat" data-stat="questions" role="tab" aria-selected="false"><b>2</b> shopper questions</button>
       <button type="button" class="stat" data-stat="edits" role="tab" aria-selected="false"><b>6</b> footprint edits</button>
@@ -392,7 +397,7 @@
   <section>
     <div class="card card--accent content-box">
       <p class="lead"><strong>Hypothesis:</strong> AI recommends the best-<em>described</em> brand, not always the best product.</p>
-      <p class="muted"><span class="focal-name">Amazfit Active</span> ($129 — 14-day battery, GPS, sleep) vs. <span class="rival-name">five rivals</span>. One element changed per test; everything else held constant.</p>
+      <p class="muted"><span class="focal-name">Amazfit Active</span> ($129; 14-day battery, GPS, sleep) against <span class="rival-name">five rivals</span>. One element changed per test, with everything else held constant.</p>
     </div>
   </section>
 
@@ -440,12 +445,12 @@
     </div>
     <div class="grid2">
       <div class="card">
-        <p>On the open question, <strong>Claude swings from 13% to 73%</strong> depending on how Amazfit is described — an expert quote wins.</p>
-        <p class="muted">Footprint quality moves the evidence-driven model against a stronger rival.</p>
+        <p>On the open question, <strong>Claude swings from 13% to 73%</strong> depending on how Amazfit is described. An expert quote wins.</p>
+        <p class="muted">How a brand is described moves this evidence-driven model, even against a stronger rival.</p>
       </div>
       <div class="card">
-        <p><strong>Gemini stays near 0%</strong> no matter what you change; it keeps picking Garmin, the Runner's World Editor's Choice.</p>
-        <p class="muted">With a price limit, Gemini loved Amazfit — that was price fit, not pages.</p>
+        <p><strong>Gemini stays near 0%</strong> no matter what you change. It keeps picking Garmin, the Runner's World Editor's Choice.</p>
+        <p class="muted">With a price limit Gemini liked Amazfit, but that was price fit, not its pages.</p>
       </div>
     </div>
   </section>
@@ -453,23 +458,42 @@
   <section>
     <div class="section-head">
       <span class="section-num">03</span>
-      <h2>What the AI reaches for</h2>
+      <h2>Why it works: the agent quotes your proof back</h2>
     </div>
-    <div class="card">
-      <p>When we added press or expert coverage, the AI <strong>cited it in nearly every run where it picked Amazfit</strong> (Claude 14/14 and 22/22 on the open question; 8/8 and 9/9 with price). Without it, the model fell back to the brand's own page and specs.</p>
+    <div class="card card--accent">
+      <p class="quote">"It delivers excellent GPS performance, praised by <span class="hl">Runner's World</span> for <span class="hl">'marathon-grade GPS'</span>, detailed sleep tracking, and 14-day battery. At $129, the best balance of the user's needs."</p>
+      <p class="muted note">Claude, explaining why it picked Amazfit after I added one Runner's World citation. Before that, it had nothing beyond the brand's own page to cite.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <p>It cited the added review in nearly every pick that followed (Claude 22/22 with an expert quote, 14/14 with a citation). Remove the review and it falls back to the brand's own page and specs. The proof a brand earns is the proof the agent repeats.</p>
     </div>
   </section>
 
   <section>
     <div class="section-head">
       <span class="section-num">04</span>
+      <h2>What I built: the Agent Visibility Audit</h2>
+    </div>
+    <div class="card">
+      <p class="muted" style="margin-bottom:14px">Point it at a brand and it reports how visible that brand is to agents, what is missing, and which honest fixes buy the most visibility. Here it is, run on Amazfit:</p>
+      <div class="audit-row first"><span class="audit-label">Score</span><span>Measured pick-rate: Claude 10% priced, 13% open. Gemini 50% priced, 0% open. Low, and it swings by question.</span></div>
+      <div class="audit-row"><span class="audit-label">Gaps</span><span>No press citation, no expert quote, the buyer's need not named in copy, no hard numbers.</span></div>
+      <div class="audit-row"><span class="audit-label">Fixes</span><span><strong>1.</strong> Earn an expert quote (biggest, most durable). <strong>2.</strong> Name the buyer's need. <strong>3.</strong> Add a press citation. Ranked by measured gain.</span></div>
+      <div class="audit-row"><span class="audit-label">Proof</span><span>Apply the top fix and re-run: open 13% to 73%, priced 10% to 80%.</span></div>
+      <p class="note muted" style="margin-top:14px;font-style:italic">The score is the measured pick-rate, not an invented rubric. The fixes are ranked by gains I actually measured.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">05</span>
       <h2>Honest limits</h2>
     </div>
     <div class="card">
       <ul>
-        <li>Priced question: 10 runs per change (directional). Open question: 30 runs (tighter CIs).</li>
-        <li>Controlled information package per brand — post-retrieval product cards, not live web — to isolate one variable.</li>
-        <li>Two models, one category. Keyword stuffing shown as caution, never a recommendation.</li>
+        <li>Priced question: 10 runs per change (directional). Open question: 30 runs (tighter).</li>
+        <li>Controlled information package per brand: the product cards a model reasons over after searching, not the live web, so I can isolate one variable.</li>
+        <li>Two models, one category. Keyword stuffing is shown as a caution, never a recommendation.</li>
       </ul>
     </div>
   </section>
@@ -489,7 +513,7 @@ const RIVALS_HTML = RIVALS.split(', ').map(r => `<span class="rival-name">${r}</
 const STAT_INFO = {
   models: {
     title: '2 AI models',
-    html: '<p>Claude Haiku 4.5 (Anthropic) and Gemini 3.5 Flash (Google). Same harness and prompts — results reported separately because the two models weight price, proof, and copy differently.</p>'
+    html: '<p>Claude Haiku 4.5 (Anthropic) and Gemini 3.5 Flash (Google). Same harness and prompts. I report them separately because the two models weight price, proof, and copy differently.</p>'
   },
   questions: {
     title: '2 shopper questions',
@@ -497,15 +521,15 @@ const STAT_INFO = {
       <li><span class="q-label">Priced · 10 runs per edit</span>“${QUERIES.priced}”</li>
       <li><span class="q-label">Open · 30 runs per edit</span>“${QUERIES.open}”</li>
     </ul>
-    <p style="margin-top:10px;font-size:0.875rem;color:#5c5c5c">The open question removes the price ceiling — testing whether footprint edits move an underdog once the price edge is gone.</p>`
+    <p style="margin-top:10px;font-size:0.875rem;color:#5c5c5c">The open question removes the price ceiling. It tests whether changes to a brand's pages move an underdog once the price edge is gone.</p>`
   },
   edits: {
     title: '6 footprint edits',
-    html: '<p>One change to Amazfit per run: no change (baseline), hard numbers on claims, press citation, expert quote, problem-matched copy, and keyword stuffing (caution arm — measured, never recommended). Rivals and query held constant.</p>'
+    html: '<p>One change to Amazfit per run: no change (baseline), hard numbers on claims, press citation, expert quote, problem-matched copy, and keyword stuffing (a caution arm, measured but never recommended). Rivals and query held constant.</p>'
   },
   brand: {
-    title: 'Focal brand — Amazfit Active',
-    html: `<p><span class="focal-name">Amazfit Active</span> ($129) vs. ${RIVALS_HTML}. Amazfit has strong specs but thin third-party editorial coverage — an intentional gap we test fixes for.</p>`
+    title: 'Focal brand: Amazfit Active',
+    html: `<p><span class="focal-name">Amazfit Active</span> ($129) against ${RIVALS_HTML}. Amazfit has strong specs but thin third-party coverage, an intentional gap I test fixes for.</p>`
   }
 };
 
@@ -568,13 +592,13 @@ function render(){
 
   const ins = document.getElementById('insight');
   if (state.model === 'gemini' && state.regime === 'open') {
-    ins.innerHTML = '<b>Gemini won\'t budge.</b> It picks Garmin almost every run regardless of footprint edits — once the price edge is gone, pages don\'t move it.';
+    ins.innerHTML = '<b>Gemini won\'t budge.</b> It picks Garmin almost every run regardless of page edits. Once the price edge is gone, the pages don\'t move it.';
   } else if (state.model === 'gemini' && state.regime === 'priced') {
     ins.innerHTML = '<b>Price, not pages.</b> With a budget limit, the cheapest capable watch wins; most edits saturate near 100%.';
   } else if (state.model === 'claude' && state.regime === 'open') {
     ins.innerHTML = '<b>Outside proof wins.</b> Expert quote (73%) and naming the need (60%) lift Amazfit most against a stronger rival.';
   } else {
-    ins.innerHTML = '<b>Best-described, not best product.</b> Amazfit is the best fit yet starts at 10% — outside proof and naming the need push it to 80–90%.';
+    ins.innerHTML = '<b>Best-described, not best product.</b> Amazfit is the best fit yet starts at 10%. Outside proof and naming the need push it to 80% or higher.';
   }
 
   document.getElementById('nnote').textContent =
