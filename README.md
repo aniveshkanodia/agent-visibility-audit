@@ -1,10 +1,10 @@
 # Agent Visibility Audit — PMG Hackathon 2026
 
-When a shopper asks an AI to recommend a smartwatch, what in the brand's online information actually drives the pick? We change one element of **Amazfit Active's** footprint at a time, hold rivals and the question constant, and measure pick-rate across two AI models.
+**[Agent Visibility Audit — interactive report](https://aniveshkanodia.github.io/agent-visibility-audit/)** · live demo on GitHub Pages
 
-**Agent Visibility Audit report:** [aniveshkanodia.github.io/agent-visibility-audit](https://aniveshkanodia.github.io/agent-visibility-audit/)
+Interactive findings from a controlled experiment: what in a brand's online information drives AI pick-rate, measured on **Amazfit Active** vs five rivals across **Claude** and **Gemini** (per model, never pooled).
 
-**Category:** smartwatches · **Focal brand:** Amazfit Active · **Models:** Claude Haiku 4.5, Gemini 3.5 Flash
+**Category:** smartwatches · **Models:** Claude Haiku 4.5, Gemini 3.5 Flash
 
 ---
 
@@ -72,7 +72,7 @@ Re-running the full q2 matrix: add `--reps 30` without `--analyze`/`--audit` (AP
 | `src/` | Harness: environment, treatments, runner, analyze, audit |
 | `run_experiment.py` | CLI entry point |
 | `results/`, `results_q2/` | **Frozen submission runs** (committed) |
-| `index.html` | Interactive findings app (GitHub Pages) |
+| [`index.html`](https://aniveshkanodia.github.io/agent-visibility-audit/) | **Live interactive report** (GitHub Pages — open this, not the raw file in the repo browser) |
 
 ---
 
