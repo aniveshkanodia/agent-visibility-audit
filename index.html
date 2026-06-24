@@ -8,23 +8,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  /*
+   * Brand palette — role-based tokens (60-30-10):
+   *   60% cream  #F9F7F5  surfaces, page background
+   *   30% sage   #8E9989  structure, borders, baseline bars
+   *   10% accent #C7984A + #D87C64 — toggles, lifts, caution only (scarce)
+   *   ink        #2D2D2D  all readable text (WCAG AA on cream)
+   */
   :root {
-    --bg: #f3efe8;
-    --bg-grid: rgba(26, 24, 20, 0.04);
-    --surface: #fdfcfa;
-    --ink: #1a1814;
-    --muted: #6a645c;
-    --line: #d9d2c8;
-    --accent: #2f5d4e;
-    --accent-soft: #e4ede9;
-    --claude: #5b4bb7;
-    --claude-soft: #ece9f8;
-    --gemini: #1a6b78;
-    --gemini-soft: #e0f0f2;
-    --warn: #a85c1a;
-    --warn-soft: #f6ebe0;
-    --bar-track: #e8e2d9;
-    --shadow: 0 1px 0 rgba(26, 24, 20, 0.06), 0 12px 40px rgba(26, 24, 20, 0.06);
+    --cream: #F9F7F5;
+    --sage: #8E9989;
+    --gold: #C7984A;
+    --coral: #D87C64;
+    --ink: #2D2D2D;
+
+    --bg: var(--cream);
+    --bg-grid: rgba(142, 153, 137, 0.14);
+    --surface: #ffffff;
+    --muted: #5c5c5c;
+    --line: #d5d9d4;
+    --line-strong: var(--sage);
+    --sage-dark: #6d7768;
+    --sage-soft: rgba(142, 153, 137, 0.14);
+    --gold-soft: rgba(199, 152, 74, 0.13);
+    --coral-soft: rgba(216, 124, 100, 0.12);
+    --bar-track: #e4e8e2;
+    --shadow: 0 1px 0 rgba(45, 45, 45, 0.05), 0 10px 32px rgba(45, 45, 45, 0.06);
     --radius: 10px;
     --font: "Source Sans 3", system-ui, sans-serif;
     --display: "Fraunces", Georgia, serif;
@@ -102,7 +111,7 @@
     font-family: var(--mono);
     font-size: 12px;
     font-weight: 500;
-    color: var(--accent);
+    color: var(--gold);
     letter-spacing: 0.08em;
     flex: none;
   }
@@ -124,7 +133,7 @@
     box-shadow: var(--shadow);
   }
   .card--accent {
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid var(--gold);
   }
   .card p { margin: 0 0 12px; }
   .card p:last-child { margin-bottom: 0; }
@@ -142,7 +151,7 @@
   .panel-top {
     padding: 22px 28px 18px;
     border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, #faf8f4 0%, var(--surface) 100%);
+    background: linear-gradient(180deg, var(--cream) 0%, var(--surface) 100%);
   }
   .panel-body { padding: 22px 28px 26px; }
   .label {
@@ -171,25 +180,25 @@
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s, color 0.15s;
   }
-  .seg button:hover { border-color: #bbb4a8; }
+  .seg button:hover { border-color: var(--sage); }
   .seg button.on[data-model="claude"] {
-    background: var(--claude); color: #fff; border-color: var(--claude);
+    background: var(--coral); color: var(--ink); border-color: var(--coral);
   }
   .seg button.on[data-model="gemini"] {
-    background: var(--gemini); color: #fff; border-color: var(--gemini);
+    background: var(--sage); color: var(--ink); border-color: var(--sage);
   }
   .seg button.on[data-regime] {
-    background: var(--accent); color: #fff; border-color: var(--accent);
+    background: var(--gold); color: var(--ink); border-color: var(--gold);
   }
   .query-box {
     margin-top: 12px;
     padding: 12px 14px;
-    background: var(--accent-soft);
+    background: var(--sage-soft);
     border-radius: 8px;
     font-size: 14px;
     line-height: 1.45;
     color: var(--ink);
-    border: 1px solid #c5d9d0;
+    border: 1px solid var(--line);
     font-style: italic;
   }
 
@@ -232,17 +241,17 @@
     border-radius: 4px;
     transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .base .fill { background: #9a948c; }
-  .up .fill { background: var(--accent); }
-  .caution .fill { background: var(--warn); opacity: 0.85; }
-  .row.caution .nm { color: var(--warn); }
+  .base .fill { background: var(--sage); opacity: 0.55; }
+  .up .fill { background: var(--gold); }
+  .caution .fill { background: var(--coral); }
+  .row.caution .nm { color: var(--coral); }
 
   .insight {
     margin-top: 22px;
     padding: 16px 18px;
-    background: var(--accent-soft);
+    background: var(--gold-soft);
     border-radius: 8px;
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid var(--gold);
     font-size: 15px;
     line-height: 1.5;
   }
@@ -257,7 +266,7 @@
 
   ul { margin: 0; padding-left: 1.2em; }
   li { margin: 8px 0; font-size: 15px; color: var(--muted); }
-  li::marker { color: var(--accent); }
+  li::marker { color: var(--gold); }
 
   .colophon {
     margin-top: 56px;
