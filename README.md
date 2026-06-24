@@ -76,7 +76,7 @@ Re-running the full q2 matrix: add `--reps 30` without `--analyze`/`--audit` (AP
 
 ---
 
-## Method (honest limits)
+## Method
 
 - **Controlled information package:** agents reason over curated product cards (post-retrieval bundle), not live web browsing — required to isolate one variable at a time.
 - **Small samples:** n=10 (priced) and n=30 (open); treat single-arm gains as directional where CIs are wide.
