@@ -2,7 +2,9 @@
 
 When a shopper asks an AI to recommend a smartwatch, what in the brand's online information actually drives the pick? We change one element of **Amazfit Active's** footprint at a time, hold rivals and the question constant, and measure pick-rate across two AI models.
 
-**Live interactive findings:** [index.html](index.html) (also served via GitHub Pages after publish)
+**Live interactive findings:** [index.html](index.html) · [GitHub Pages](https://aniveshkanodia.github.io/agent-visibility-audit/)
+
+**Repository:** [github.com/aniveshkanodia/agent-visibility-audit](https://github.com/aniveshkanodia/agent-visibility-audit)
 
 **Category:** smartwatches · **Focal brand:** Amazfit Active · **Models:** Claude Haiku 4.5, Gemini 3.5 Flash
 
